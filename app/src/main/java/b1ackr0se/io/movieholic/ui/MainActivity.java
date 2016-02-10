@@ -1,7 +1,9 @@
-package b1ackr0se.io.movieholic;
+package b1ackr0se.io.movieholic.ui;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+
+import b1ackr0se.io.movieholic.R;
 
 public class MainActivity extends AppCompatActivity {
 
