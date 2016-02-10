@@ -1,4 +1,4 @@
-package b1ackr0se.io.movieholic.ui;
+package b1ackr0se.io.movieholic.ui.activity;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
