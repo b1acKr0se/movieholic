@@ -4,7 +4,7 @@ package b1ackr0se.io.movieholic.data.model;
  * Model for a typical movie
  */
 public class Movie {
-    
+
     private Boolean adult;
     private String backdropPath;
     private Integer budget;
