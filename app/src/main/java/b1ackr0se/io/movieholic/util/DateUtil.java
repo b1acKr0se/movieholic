@@ -1,6 +1,8 @@
 package b1ackr0se.io.movieholic.util;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Locale;
 
 /**
  * Utility class to provide appropriate date
@@ -14,17 +16,15 @@ public class DateUtil {
     }
 
     public String getFirstDateString() {
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        return year + "-" + month + "-" + day;
+        SimpleDateFormat simpleDateFormat =
+                new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        return simpleDateFormat.format(calendar.getTime());
     }
 
     public String getSecondDateString() {
         calendar.add(Calendar.WEEK_OF_YEAR, 1);
-        int year = calendar.get(Calendar.YEAR);
-        int month = calendar.get(Calendar.MONTH);
-        int day = calendar.get(Calendar.DAY_OF_MONTH);
-        return year + "-" + month + "-" + day;
+        SimpleDateFormat simpleDateFormat =
+                new SimpleDateFormat("yyyy-MM-dd", Locale.US);
+        return simpleDateFormat.format(calendar.getTime());
     }
 }

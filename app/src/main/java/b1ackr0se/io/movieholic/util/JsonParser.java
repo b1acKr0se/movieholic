@@ -14,6 +14,7 @@ public class JsonParser {
     public static final String OVERVIEW = "overview";
     public static final String RELEASE_DATE = "release_date";
     public static final String TITLE = "title";
+    public static final String NAME = "name";
     public static final String BACKDROP_PATH = "backdrop_path";
     public static final String VOTE_AVERAGE = "vote_average";
     public static final String POSTER_PATH = "poster_path";
@@ -52,6 +53,9 @@ public class JsonParser {
 
         if(!object.isNull(TITLE))
             movie.setVoteAverage(object.getDouble(VOTE_AVERAGE));
+
+        if(!object.isNull(NAME))
+            movie.setOriginalTitle(object.getString(NAME));
 
         return movie;
     }

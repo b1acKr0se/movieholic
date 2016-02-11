@@ -3,6 +3,7 @@ package b1ackr0se.io.movieholic.presenter;
 import java.util.ArrayList;
 
 import b1ackr0se.io.movieholic.data.model.Movie;
+import b1ackr0se.io.movieholic.util.Option;
 import rx.Subscriber;
 import rx.Subscription;
 import rx.android.schedulers.AndroidSchedulers;
@@ -14,9 +15,9 @@ public class MoviePresenter implements IMoviePresenter{
     private IMovieListingFragment mMovieListingFragment;
     private MovieFetcher mMovieFetcher;
 
-    public MoviePresenter(IMovieListingFragment movieListingFragment, boolean isMovie) {
+    public MoviePresenter(IMovieListingFragment movieListingFragment, Option option) {
         this.mMovieListingFragment = movieListingFragment;
-        this.mMovieFetcher = new MovieFetcher(isMovie);
+        this.mMovieFetcher = new MovieFetcher(option);
     }
 
     @Override
@@ -44,6 +45,7 @@ public class MoviePresenter implements IMoviePresenter{
 
                     @Override
                     public void onNext(ArrayList<Movie> movies) {
+                        mMovieListingFragment.hideLoading();
                         mMovieListingFragment.showMovies(movies);
                     }
                 });

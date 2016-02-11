@@ -19,6 +19,7 @@ import b1ackr0se.io.movieholic.data.model.Movie;
 import b1ackr0se.io.movieholic.presenter.IMovieListingFragment;
 import b1ackr0se.io.movieholic.presenter.MoviePresenter;
 import b1ackr0se.io.movieholic.ui.adapter.MovieAdapter;
+import b1ackr0se.io.movieholic.util.Option;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import rx.Subscription;
@@ -47,7 +48,7 @@ public class MovieFragment extends Fragment implements IMovieListingFragment{
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mMoviePresenter = new MoviePresenter(this, true);
+        mMoviePresenter = new MoviePresenter(this, Option.MOVIE_POPULAR);
     }
 
     @Override
