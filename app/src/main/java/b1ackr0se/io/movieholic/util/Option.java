@@ -5,5 +5,11 @@ public enum Option {
     MOVIE_POPULAR,
     MOVIE_IN_THEATER,
     TV_HIGHEST_RATING,
-    TV_POPULAR
+    TV_POPULAR;
+    public enum Type {
+        MOVIE,
+        TV
+    }
 }
+
+

@@ -35,20 +35,32 @@ public class MovieFragment extends Fragment implements IMovieListingFragment{
     private MovieAdapter mMovieAdapter;
     private MoviePresenter mMoviePresenter;
     private Subscription mMovieSuscription;
+    private Option.Type mFragmentType;
     private ArrayList<Movie> mMovieList = new ArrayList<>();
 
     public MovieFragment() {
         // Required empty public constructor
     }
 
-    public static MovieFragment newInstance() {
-        return new MovieFragment();
+    public void setType(Option.Type type) {
+        this.mFragmentType = type;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mMoviePresenter = new MoviePresenter(this, Option.MOVIE_POPULAR);
+        switch (mFragmentType) {
+            case MOVIE:
+                mMoviePresenter = new MoviePresenter(this, Option.MOVIE_POPULAR);
+                break;
+            case TV:
+                mMoviePresenter = new MoviePresenter(this, Option.TV_POPULAR);
+                break;
+            default:
+                mMoviePresenter = new MoviePresenter(this, Option.MOVIE_POPULAR);
+                break;
+        }
+
     }
 
     @Override
@@ -109,4 +121,5 @@ public class MovieFragment extends Fragment implements IMovieListingFragment{
     public void onMovieClicked(Movie movie) {
         Toast.makeText(getContext(), movie.getTitle() + " " + movie.getPosterPath(), Toast.LENGTH_LONG).show();
     }
+
 }
