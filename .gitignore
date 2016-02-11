@@ -7,6 +7,8 @@
 .DS_Store
 /build
 /captures
+/app/src/main/java/b1ackr0se/io/movieholic/debug
+/app/build/outputs/apk
 =======
 # Built application files
 *.apk

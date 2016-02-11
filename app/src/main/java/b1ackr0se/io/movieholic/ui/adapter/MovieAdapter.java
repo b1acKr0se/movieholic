@@ -63,7 +63,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.itemView.setOnClickListener(holder);
         holder.mMovie = mMovieList.get(position);
-        holder.movieName.setText(holder.mMovie.getOriginalTitle());
+        holder.movieName.setText(holder.mMovie.getTitle());
         Glide.with(mContext).load(holder.mMovie.getPosterPath())
                 .asBitmap()
                 .diskCacheStrategy(DiskCacheStrategy.RESULT)

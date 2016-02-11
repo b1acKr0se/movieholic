@@ -1,0 +1,59 @@
+package b1ackr0se.io.movieholic.util;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
+import b1ackr0se.io.movieholic.data.model.Movie;
+
+public class JsonParser {
+
+    public static final String RESULTS = "results";
+    public static final String OVERVIEW = "overview";
+    public static final String RELEASE_DATE = "release_date";
+    public static final String TITLE = "title";
+    public static final String BACKDROP_PATH = "backdrop_path";
+    public static final String VOTE_AVERAGE = "vote_average";
+    public static final String POSTER_PATH = "poster_path";
+
+    public static ArrayList<Movie> parse(String json) throws JSONException {
+        ArrayList<Movie> list = new ArrayList<>();
+        JSONObject object = new JSONObject(json);
+
+        if(!object.isNull(RESULTS)) {
+            JSONArray array = object.getJSONArray(RESULTS);
+
+            for(int i = 0; i< array.length(); i++) {
+                list.add(parseMovie(array.getJSONObject(i)));
+            }
+        }
+        return list;
+    }
+
+    public static Movie parseMovie(JSONObject object) throws JSONException {
+        Movie movie = new Movie();
+
+        if(!object.isNull(OVERVIEW))
+            movie.setOverview(object.getString(OVERVIEW));
+
+        if(!object.isNull(RELEASE_DATE))
+            movie.setReleaseDate(String.valueOf(object.get(OVERVIEW)));
+
+        if(!object.isNull(TITLE))
+            movie.setTitle(object.getString(TITLE));
+
+        if(!object.isNull(BACKDROP_PATH))
+            movie.setBackdropPath(Api.BASE_BACKDROP_URL + object.getString(BACKDROP_PATH));
+
+        if(!object.isNull(POSTER_PATH))
+            movie.setPosterPath(Api.BASE_POSTER_URL + object.getString(POSTER_PATH));
+
+        if(!object.isNull(TITLE))
+            movie.setVoteAverage(object.getDouble(VOTE_AVERAGE));
+
+        return movie;
+    }
+
+}

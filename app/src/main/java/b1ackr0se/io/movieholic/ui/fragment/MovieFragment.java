@@ -2,6 +2,7 @@ package b1ackr0se.io.movieholic.ui.fragment;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -16,9 +17,11 @@ import java.util.ArrayList;
 import b1ackr0se.io.movieholic.R;
 import b1ackr0se.io.movieholic.data.model.Movie;
 import b1ackr0se.io.movieholic.presenter.IMovieListingFragment;
+import b1ackr0se.io.movieholic.presenter.MoviePresenter;
 import b1ackr0se.io.movieholic.ui.adapter.MovieAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
+import rx.Subscription;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -29,6 +32,8 @@ public class MovieFragment extends Fragment implements IMovieListingFragment{
     @Bind(R.id.progress_bar)ProgressBar progressBar;
 
     private MovieAdapter mMovieAdapter;
+    private MoviePresenter mMoviePresenter;
+    private Subscription mMovieSuscription;
     private ArrayList<Movie> mMovieList = new ArrayList<>();
 
     public MovieFragment() {
@@ -40,14 +45,34 @@ public class MovieFragment extends Fragment implements IMovieListingFragment{
     }
 
     @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mMoviePresenter = new MoviePresenter(this, true);
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_movie, container, false);
+
         ButterKnife.bind(this, view);
 
         initRecyclerView();
 
         return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mMovieSuscription = mMoviePresenter.displayData();
+    }
+
+    @Override
+    public void onDestroyView() {
+        if(mMovieSuscription != null && !mMovieSuscription.isUnsubscribed())
+            mMovieSuscription.unsubscribe();
+        super.onDestroyView();
     }
 
     private void initRecyclerView() {
@@ -81,6 +106,6 @@ public class MovieFragment extends Fragment implements IMovieListingFragment{
 
     @Override
     public void onMovieClicked(Movie movie) {
-
+        Toast.makeText(getContext(), movie.getTitle() + " " + movie.getPosterPath(), Toast.LENGTH_LONG).show();
     }
 }

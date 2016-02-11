@@ -23,7 +23,7 @@ public class Movie {
     private String tagline;
     private String title;
     private Boolean video;
-    private Float voteAverage;
+    private Double voteAverage;
     private Integer voteCount;
 
     /**
@@ -355,7 +355,7 @@ public class Movie {
      * @return
      * The voteAverage
      */
-    public Float getVoteAverage() {
+    public Double getVoteAverage() {
         return voteAverage;
     }
 
@@ -364,7 +364,7 @@ public class Movie {
      * @param voteAverage
      * The vote_average
      */
-    public void setVoteAverage(Float voteAverage) {
+    public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
     }
 

@@ -1,21 +1,19 @@
 package b1ackr0se.io.movieholic.ui.activity;
 
+import android.support.v4.app.FragmentManager;
+import android.os.Bundle;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 import b1ackr0se.io.movieholic.R;
-import b1ackr0se.io.movieholic.data.model.Movie;
-import b1ackr0se.io.movieholic.presenter.MainView;
+import b1ackr0se.io.movieholic.debug.ExceptionHandler;
+import b1ackr0se.io.movieholic.ui.adapter.TabAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity implements MainView {
+public class MainActivity extends AppCompatActivity {
 
     @Bind(R.id.toolbar_top)Toolbar toolbar;
     @Bind(R.id.button_movie)View buttonMovie;
@@ -26,18 +24,58 @@ public class MainActivity extends AppCompatActivity implements MainView {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this));
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+
+        setSupportActionBar(toolbar);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        TabAdapter adapter = new TabAdapter(fragmentManager);
+        viewPager.setAdapter(adapter);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                switch (position) {
+                    case 0:
+                        buttonMovie.setAlpha(1.0f);
+                        buttonTv.setAlpha(0.5f);
+                        break;
+                    case 1:
+                        buttonMovie.setAlpha(0.5f);
+                        buttonTv.setAlpha(1.0f);
+                        break;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
+
+        buttonMovie.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setCurrentItem(0, true);
+                buttonMovie.setAlpha(1.0f);
+                buttonTv.setAlpha(0.5f);
+            }
+        });
+
+        buttonTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                viewPager.setCurrentItem(1, true);
+                buttonMovie.setAlpha(0.5f);
+                buttonTv.setAlpha(1.0f);
+            }
+        });
     }
 
 
-    @Override
-    public void setData(ArrayList<Movie> list) {
-
-    }
-
-    @Override
-    public void showMessage(String message) {
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-    }
 }
