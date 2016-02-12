@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/text_label_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Gallery"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/white_title"/>
+    
+    <HorizontalScrollView
+        android:id="@+id/nested_gallery"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/layout_gallery"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"/>
+        
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/text_label_videos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Videos"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/white_title"/>
+
+    <HorizontalScrollView
+        android:id="@+id/nested_videos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:id="@+id/layout_videos"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"/>
+
+    </HorizontalScrollView>
+
+    <TextView
+        android:id="@+id/text_label_review"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Reviews"
+        android:textAppearance="@style/TextAppearance.AppCompat.Title"
+        android:textColor="@color/white_title"/>
+
+    <LinearLayout
+        android:id="@+id/layout_reviews"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clipChildren="false"
+        android:orientation="vertical"/>
+
+
+</LinearLayout>

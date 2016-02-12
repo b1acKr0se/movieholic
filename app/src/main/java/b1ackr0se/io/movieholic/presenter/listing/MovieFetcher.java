@@ -1,4 +1,4 @@
-package b1ackr0se.io.movieholic.presenter;
+package b1ackr0se.io.movieholic.presenter.listing;
 
 import com.squareup.okhttp.OkHttpClient;
 import com.squareup.okhttp.Request;

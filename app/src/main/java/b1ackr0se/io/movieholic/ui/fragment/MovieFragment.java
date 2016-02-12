@@ -16,8 +16,8 @@ import java.util.ArrayList;
 
 import b1ackr0se.io.movieholic.R;
 import b1ackr0se.io.movieholic.data.model.Movie;
-import b1ackr0se.io.movieholic.presenter.IMovieListingFragment;
-import b1ackr0se.io.movieholic.presenter.MoviePresenter;
+import b1ackr0se.io.movieholic.presenter.listing.IMovieListingFragment;
+import b1ackr0se.io.movieholic.presenter.listing.MoviePresenter;
 import b1ackr0se.io.movieholic.ui.adapter.MovieAdapter;
 import b1ackr0se.io.movieholic.util.Option;
 import butterknife.Bind;
