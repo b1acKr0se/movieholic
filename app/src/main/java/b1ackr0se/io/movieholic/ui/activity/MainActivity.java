@@ -8,7 +8,6 @@ import android.support.v7.widget.Toolbar;
 import android.view.View;
 
 import b1ackr0se.io.movieholic.R;
-import b1ackr0se.io.movieholic.debug.ExceptionHandler;
 import b1ackr0se.io.movieholic.ui.adapter.TabAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -24,7 +23,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Thread.setDefaultUncaughtExceptionHandler(new ExceptionHandler(this));
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
 

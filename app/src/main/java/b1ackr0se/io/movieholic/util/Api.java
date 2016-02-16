@@ -10,6 +10,7 @@ public class Api {
     public static final String BASE_URL = "https://api.themoviedb.org/3";
     public static final String BASE_POSTER_URL = "http://image.tmdb.org/t/p/w342";
     public static final String BASE_BACKDROP_URL = "http://image.tmdb.org/t/p/w780";
+    public static final String BASE_IMAGE_URL = "http://image.tmdb.org/t/p/w1280";
 
     public static final String POPULAR_MOVIES = BASE_URL + "/discover/movie?sort_by=popularity.desc&api_key=" + API_KEY;
     public static final String HIGHEST_RATED_MOVIES = BASE_URL + "/discover/movie?vote_count.gte=500&language=en&sort_by=vote_average.desc&api_key=" + API_KEY;
