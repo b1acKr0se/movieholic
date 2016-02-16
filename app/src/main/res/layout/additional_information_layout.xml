@@ -14,7 +14,7 @@
         android:textColor="@color/white_title"/>
     
     <HorizontalScrollView
-        android:id="@+id/nested_gallery"
+        android:id="@+id/horizontal_gallery"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
@@ -36,7 +36,7 @@
         android:textColor="@color/white_title"/>
 
     <HorizontalScrollView
-        android:id="@+id/nested_videos"
+        android:id="@+id/horizontal_videos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

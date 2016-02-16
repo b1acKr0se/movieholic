@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 import b1ackr0se.io.movieholic.data.model.Movie;
 import b1ackr0se.io.movieholic.util.Api;
-import b1ackr0se.io.movieholic.util.JsonParser;
 import b1ackr0se.io.movieholic.util.Option;
 import rx.Observable;
 import rx.functions.Func0;

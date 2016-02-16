@@ -1,4 +1,4 @@
-package b1ackr0se.io.movieholic.util;
+package b1ackr0se.io.movieholic.presenter.listing;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -7,10 +7,12 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import b1ackr0se.io.movieholic.data.model.Movie;
+import b1ackr0se.io.movieholic.util.Api;
 
 public class JsonParser {
 
     public static final String RESULTS = "results";
+    public static final String ID = "id";
     public static final String OVERVIEW = "overview";
     public static final String RELEASE_DATE = "release_date";
     public static final String TITLE = "title";
@@ -35,6 +37,11 @@ public class JsonParser {
 
     public static Movie parseMovie(JSONObject object) throws JSONException {
         Movie movie = new Movie();
+
+        if(!object.isNull(ID))
+        {
+            movie.setId(object.getString(ID));
+        }
 
         if(!object.isNull(OVERVIEW))
             movie.setOverview(object.getString(OVERVIEW));

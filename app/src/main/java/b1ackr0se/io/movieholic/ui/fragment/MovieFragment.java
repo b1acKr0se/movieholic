@@ -1,6 +1,8 @@
 package b1ackr0se.io.movieholic.ui.fragment;
 
 
+import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -18,6 +20,7 @@ import b1ackr0se.io.movieholic.R;
 import b1ackr0se.io.movieholic.data.model.Movie;
 import b1ackr0se.io.movieholic.presenter.listing.IMovieListingFragment;
 import b1ackr0se.io.movieholic.presenter.listing.MoviePresenter;
+import b1ackr0se.io.movieholic.ui.activity.DetailActivity;
 import b1ackr0se.io.movieholic.ui.adapter.MovieAdapter;
 import b1ackr0se.io.movieholic.util.Option;
 import butterknife.Bind;
@@ -47,8 +50,16 @@ public class MovieFragment extends Fragment implements IMovieListingFragment{
     }
 
     @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putSerializable("TYPE", mFragmentType);
+    }
+
+    @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null)
+            mFragmentType = (Option.Type) savedInstanceState.getSerializable("TYPE");
         switch (mFragmentType) {
             case MOVIE:
                 mMoviePresenter = new MoviePresenter(this, Option.MOVIE_POPULAR);
@@ -90,7 +101,11 @@ public class MovieFragment extends Fragment implements IMovieListingFragment{
 
     private void initRecyclerView() {
         recyclerView.setHasFixedSize(true);
-        recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        int orientation = getContext().getResources().getConfiguration().orientation;
+        if (orientation == Configuration.ORIENTATION_PORTRAIT)
+            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 2));
+        else
+            recyclerView.setLayoutManager(new GridLayoutManager(getActivity(), 3));
         mMovieAdapter = new MovieAdapter(getContext(), mMovieList, this);
         recyclerView.setAdapter(mMovieAdapter);
     }
@@ -119,7 +134,10 @@ public class MovieFragment extends Fragment implements IMovieListingFragment{
 
     @Override
     public void onMovieClicked(Movie movie) {
-        Toast.makeText(getContext(), movie.getTitle() + " " + movie.getPosterPath(), Toast.LENGTH_LONG).show();
+        Intent intent = new Intent(getActivity(), DetailActivity.class);
+        intent.putExtra("Movie", movie);
+        intent.putExtra("Type", mFragmentType);
+        startActivity(intent);
     }
 
 }
