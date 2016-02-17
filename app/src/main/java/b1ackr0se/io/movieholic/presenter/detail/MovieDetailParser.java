@@ -46,7 +46,7 @@ public class MovieDetailParser {
     }
 
     public static List<Video> getVideoList(String json) throws JSONException {
-        List<Video> list = new ArrayList<>(); 
+        List<Video> list = new ArrayList<>();
         JSONObject object = new JSONObject(json);
         if (!object.isNull(RESULTS)) {
             JSONArray array = object.getJSONArray(RESULTS);

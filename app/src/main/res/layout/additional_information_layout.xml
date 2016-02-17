@@ -55,7 +55,8 @@
         android:layout_marginTop="16dp"
         android:text="Reviews"
         android:textAppearance="@style/TextAppearance.AppCompat.Title"
-        android:textColor="@color/white_title"/>
+        android:textColor="@color/white_title"
+        android:layout_marginBottom="8dp"/>
 
     <LinearLayout
         android:id="@+id/layout_reviews"

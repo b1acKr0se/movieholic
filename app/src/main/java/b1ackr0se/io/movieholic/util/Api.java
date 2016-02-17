@@ -27,5 +27,4 @@ public class Api {
                 + "&primary_release_date.lte=" + dateUtil.getSecondDateString()
                 + "&api_key=";
     }
-
 }

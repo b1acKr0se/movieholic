@@ -201,11 +201,11 @@ public class DetailFragment extends Fragment implements IMovieDetailView, View.O
 
     @Override
     public void showReview(List<Review> reviews) {
-        if (reviews.isEmpty()) {
+        if (reviews == null || reviews.isEmpty()) {
             mLabelReviewTextView.setVisibility(View.GONE);
             mReviewScrollView.setVisibility(View.GONE);
         } else {
-            mLabelReviewTextView.setText(View.VISIBLE);
+            mLabelReviewTextView.setVisibility(View.VISIBLE);
             mReviewScrollView.setVisibility(View.VISIBLE);
 
             mReviewScrollView.removeAllViews();
@@ -217,7 +217,7 @@ public class DetailFragment extends Fragment implements IMovieDetailView, View.O
                 TextView reviewAuthor = (TextView) reviewContainer.findViewById(R.id.text_review_author);
                 TextView reviewContent = (TextView) reviewContainer.findViewById(R.id.text_review_content);
                 reviewAuthor.setText(review.getAuthor());
-                reviewContent.setText(review.getContent());
+                reviewContent.setText(review.getContent().trim());
                 mReviewScrollView.addView(reviewContainer);
             }
         }

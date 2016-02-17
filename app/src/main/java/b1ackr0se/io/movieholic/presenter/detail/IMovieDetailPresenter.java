@@ -1,8 +1,5 @@
 package b1ackr0se.io.movieholic.presenter.detail;
 
-import java.util.List;
-
-import b1ackr0se.io.movieholic.data.model.Image;
 import b1ackr0se.io.movieholic.data.model.Movie;
 import rx.Subscription;
 
