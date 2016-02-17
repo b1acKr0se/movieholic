@@ -24,6 +24,7 @@
             android:name=".ui.activity.DetailActivity"
             android:parentActivityName=".ui.activity.MainActivity"
             android:theme="@style/TranslucentAppTheme" />
+        <activity android:name=".ui.activity.GalleryActivity"></activity>
     </application>
 
 </manifest>

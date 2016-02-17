@@ -2,13 +2,15 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:foreground="?attr/selectableItemBackground">
+    android:clickable="true"
+    android:foreground="?attr/selectableItemBackgroundBorderless"
+    android:theme="@android:style/ThemeOverlay.Material.Dark">
 
     <ImageView
         android:id="@+id/image_gallery"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:scaleType="centerInside"
-        />
+        android:scaleType="fitCenter"
+        android:transitionName="@string/image_transition_name" />
 
 </FrameLayout>

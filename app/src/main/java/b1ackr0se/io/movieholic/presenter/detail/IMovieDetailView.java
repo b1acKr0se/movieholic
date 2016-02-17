@@ -1,5 +1,7 @@
 package b1ackr0se.io.movieholic.presenter.detail;
 
+import android.view.View;
+
 import java.util.List;
 
 import b1ackr0se.io.movieholic.data.model.Image;
@@ -12,4 +14,5 @@ public interface IMovieDetailView {
     void showGallery(List<Image> images);
     void showVideo(List<Video> videos);
     void showReview(List<Review> reviews);
+    void onGalleryImageClicked(View view, Image image);
 }

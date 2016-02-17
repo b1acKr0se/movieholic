@@ -10,4 +10,6 @@
     <color name="white_title">#D9FFFFFF</color>
     <color name="white_overview">#8CFFFFFF</color>
 
+    <color name="black_overlay">#66000000</color>
+
 </resources>

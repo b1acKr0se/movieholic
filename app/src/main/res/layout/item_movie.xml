@@ -3,8 +3,9 @@
     android:layout_width="match_parent"
     android:layout_height="320dp"
     android:layout_gravity="center"
+    android:theme="@android:style/ThemeOverlay.Material.Dark"
     android:clickable="true"
-    android:foreground="?attr/selectableItemBackground">
+    android:foreground="?android:attr/selectableItemBackground">
 
     <ImageView
         android:id="@+id/image_poster"
