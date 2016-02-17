@@ -61,9 +61,9 @@ public class DetailFragment extends Fragment implements IMovieDetailView, View.O
     @Bind(R.id.layout_videos)
     LinearLayout mVideoView;
 
-    private static Option.Type mFragmentType;
-    private static Movie mMovie;
-    private Subscription mGallerySubscription, mVideoSubscription, mReviewSubscription;
+    private Option.Type mFragmentType;
+    private Movie mMovie;
+    private Subscription mGallerySubscription;
     private MovieDetailPresenter mMovieDetailPresenter;
 
 
@@ -71,28 +71,26 @@ public class DetailFragment extends Fragment implements IMovieDetailView, View.O
         // Required empty public constructor
     }
 
-    public static DetailFragment getInstance(Movie movie, Option.Type type) {
-        mMovie = movie;
-        mFragmentType = type;
-        return new DetailFragment();
+    public static DetailFragment newInstance(Movie movie, Option.Type type) {
+        DetailFragment fragment = new DetailFragment();
+        Bundle bundle = new Bundle();
+        bundle.putParcelable("movie", movie);
+        bundle.putSerializable("type", type);
+        return fragment;
     }
 
     @Override
     public void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putSerializable("TYPE", mFragmentType);
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null)
-            mMovieDetailPresenter = new MovieDetailPresenter(
-                    this,
-                    ((Option.Type) savedInstanceState.getSerializable("TYPE")));
-        else
-            mMovieDetailPresenter = new MovieDetailPresenter(this, mFragmentType);
-
+        Bundle bundle = getArguments();
+        mMovie = bundle.getParcelable("movie");
+        mFragmentType = (Option.Type) bundle.getSerializable("type");
+        mMovieDetailPresenter = new MovieDetailPresenter(this, mFragmentType);
     }
 
     @Override
@@ -107,20 +105,14 @@ public class DetailFragment extends Fragment implements IMovieDetailView, View.O
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        if(mMovie != null) {
+        if (mMovie != null)
             mMovieDetailPresenter.showDetails(mMovie);
-
-        }
     }
 
     @Override
     public void onDestroyView() {
         if(mGallerySubscription != null && !mGallerySubscription.isUnsubscribed())
             mGallerySubscription.unsubscribe();
-        if(mVideoSubscription != null && !mVideoSubscription.isUnsubscribed())
-            mVideoSubscription.unsubscribe();
-        if(mReviewSubscription != null && !mReviewSubscription.isUnsubscribed())
-            mReviewSubscription.unsubscribe();
         super.onDestroyView();
     }
 

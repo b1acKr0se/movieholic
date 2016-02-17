@@ -25,7 +25,7 @@ public class DetailActivity extends AppCompatActivity {
             Option.Type type = (Option.Type) intent.getSerializableExtra("Type");
             if (movie != null)
             {
-                DetailFragment movieDetailsFragment = DetailFragment.getInstance(movie, type);
+                DetailFragment movieDetailsFragment = DetailFragment.newInstance(movie, type);
                 getSupportFragmentManager().beginTransaction().add(R.id.frame_container, movieDetailsFragment).commit();
             }
         }

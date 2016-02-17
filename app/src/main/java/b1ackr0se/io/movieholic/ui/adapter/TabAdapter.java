@@ -9,26 +9,22 @@ import b1ackr0se.io.movieholic.util.Option;
 
 public class TabAdapter extends FragmentPagerAdapter {
 
+    public static final int NUMBER_OF_SCREEN = 2;
+
     public TabAdapter(FragmentManager fm) {
         super(fm);
     }
 
     @Override
     public Fragment getItem(int position) {
-        if (position == 0) {
-            MovieFragment fragment = new MovieFragment();
-            fragment.setType(Option.Type.MOVIE);
-            return fragment;
-        } else {
-            MovieFragment fragment = new MovieFragment();
-            fragment.setType(Option.Type.TV);
-            return fragment;
-        }
+        if (position == 0)
+            return MovieFragment.newInstance(Option.Type.MOVIE);
+        else
+            return MovieFragment.newInstance(Option.Type.TV);
     }
 
     @Override
     public int getCount() {
-        int NUMBER_OF_SCREEN = 2;
         return NUMBER_OF_SCREEN;
     }
 }

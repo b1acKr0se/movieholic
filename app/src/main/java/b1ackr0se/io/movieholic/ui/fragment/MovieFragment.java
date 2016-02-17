@@ -45,21 +45,19 @@ public class MovieFragment extends Fragment implements IMovieListingFragment{
         // Required empty public constructor
     }
 
-    public void setType(Option.Type type) {
-        this.mFragmentType = type;
-    }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putSerializable("TYPE", mFragmentType);
+    public static MovieFragment newInstance(Option.Type type) {
+        MovieFragment fragment = new MovieFragment();
+        Bundle bundle = new Bundle();
+        bundle.putSerializable("type", type);
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (savedInstanceState != null)
-            mFragmentType = (Option.Type) savedInstanceState.getSerializable("TYPE");
+        mFragmentType = (Option.Type) getArguments().getSerializable("type");
+
         switch (mFragmentType) {
             case MOVIE:
                 mMoviePresenter = new MoviePresenter(this, Option.MOVIE_POPULAR);

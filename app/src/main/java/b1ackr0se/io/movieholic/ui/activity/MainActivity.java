@@ -12,7 +12,7 @@ import b1ackr0se.io.movieholic.ui.adapter.TabAdapter;
 import butterknife.Bind;
 import butterknife.ButterKnife;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, ViewPager.OnPageChangeListener {
 
     @Bind(R.id.toolbar_top)Toolbar toolbar;
     @Bind(R.id.button_movie)View buttonMovie;
@@ -30,48 +30,47 @@ public class MainActivity extends AppCompatActivity {
         FragmentManager fragmentManager = getSupportFragmentManager();
         TabAdapter adapter = new TabAdapter(fragmentManager);
         viewPager.setAdapter(adapter);
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+        viewPager.addOnPageChangeListener(this);
+        buttonMovie.setOnClickListener(this);
+        buttonTv.setOnClickListener(this);
+    }
 
-            }
-
-            @Override
-            public void onPageSelected(int position) {
-                switch (position) {
-                    case 0:
-                        buttonMovie.setAlpha(1.0f);
-                        buttonTv.setAlpha(0.5f);
-                        break;
-                    case 1:
-                        buttonMovie.setAlpha(0.5f);
-                        buttonTv.setAlpha(1.0f);
-                        break;
-                }
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {
-
-            }
-        });
-
-        buttonMovie.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+    @Override
+    public void onClick(View v) {
+        switch (v.getId()) {
+            case R.id.button_movie:
                 viewPager.setCurrentItem(0, true);
                 buttonMovie.setAlpha(1.0f);
                 buttonTv.setAlpha(0.5f);
-            }
-        });
-
-        buttonTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
+                break;
+            case R.id.button_tv:
                 viewPager.setCurrentItem(1, true);
                 buttonMovie.setAlpha(0.5f);
                 buttonTv.setAlpha(1.0f);
-            }
-        });
+        }
+    }
+
+    @Override
+    public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+    }
+
+    @Override
+    public void onPageSelected(int position) {
+        switch (position) {
+            case 0:
+                buttonMovie.setAlpha(1.0f);
+                buttonTv.setAlpha(0.5f);
+                break;
+            case 1:
+                buttonMovie.setAlpha(0.5f);
+                buttonTv.setAlpha(1.0f);
+                break;
+        }
+    }
+
+    @Override
+    public void onPageScrollStateChanged(int state) {
+
     }
 }
